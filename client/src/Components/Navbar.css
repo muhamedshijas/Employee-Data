@@ -1,0 +1,18 @@
+.nav{
+    background-color: #F1EFEF ;
+    display: flex;
+    height: 90px;
+    width: 100%;
+    align-items: center;
+    padding-left: 20px;
+}
+.nav .links , .nav .logo{
+    width: 40%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 18px;
+    font-weight: 600;
+    gap: 60px;
+    display: flex;
+}

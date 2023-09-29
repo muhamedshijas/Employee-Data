@@ -1,0 +1,10 @@
+body {
+  background: url("https://img.freepik.com/premium-vector/abstract-trendy-pastel-color-gradient-texture-background-festive-graphic-design_120819-691.jpg?w=996");
+  width: 100%;
+  background-position: center center;
+  background-size: cover;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
