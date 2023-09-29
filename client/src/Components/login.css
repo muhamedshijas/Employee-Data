@@ -39,7 +39,18 @@ justify-content: center;
     box-shadow: none;
 }
 .login form button:hover{
-    background-color: #CCC8AA;
+    background-color: #191717;
+    color:  #CCC8AA;
+    height: 60px;
+    font-weight: 600;
+    font-size: 18px;
     box-shadow: none;
-    color: #191717;
+}
+.login form button:disabled{
+    background-color: #191717;
+    color:  #CCC8AA;
+    height: 60px;
+    font-weight: 600;
+    font-size: 18px;
+    box-shadow: none;
 }

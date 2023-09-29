@@ -17,4 +17,13 @@
     font-weight: 600;
     gap: 60px;
     display: flex;
+
+}
+.nav p{
+    color: black;
+    cursor: pointer;
+}
+.nav p a {
+
+    color: black;
 }

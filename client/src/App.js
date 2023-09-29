@@ -6,6 +6,7 @@ import './app.css'
 import LoginPage from './Pages/LoginPage';
 import HomePage from './Pages/HomePage';
 import { useDispatch, useSelector } from 'react-redux';
+import EmployeePage from './Pages/EmployeePage';
 
 function App() {
   axios.defaults.baseURL = "http://localhost:5000/";
@@ -41,14 +42,16 @@ function App() {
             <>
             <Route path='/' element={<HomePage/>}/>
             <Route path='/login' element={<Navigate to='/' />}/>
+            <Route path='/employeedetials' element={<EmployeePage/>}/>
          </>
           }
 
           {
             admin.login === false &&
             <>
-              <Route path="/login" element={<LoginPage/>} />
+            <Route path="/login" element={<LoginPage/>} />
             <Route path='/' element={<Navigate to='/login' />}/>
+            <Route path='/employeedetials' element={<Navigate to='/login'/>}/>
             </>
           }
         </Routes>

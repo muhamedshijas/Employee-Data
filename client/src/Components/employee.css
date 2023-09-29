@@ -1,0 +1,41 @@
+.table-container{
+    height: 100vh;
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.table{
+    padding: 10px;
+    width: 80%;
+    background-color: #F1EFEF;
+    font-size: 17px;
+    border-radius: 9px;
+}
+.table table{
+    width: 100%;
+}
+.table tr  .icons{
+    display: flex;
+    gap: 20px;
+    font-size: 19px;
+   
+}
+.table tr .icons .delete{
+    color: red;
+    cursor: pointer;
+}
+.table tr .icons .edit{
+    color: blue;
+    cursor: pointer;
+}
+.table .btn{
+    width: 100%;
+}
+.table .btn button{
+    height: 50px;
+    width: 300px;
+    font-size: 16px;
+    background-color: #191717;
+}
