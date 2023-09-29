@@ -9,6 +9,7 @@ function Navbar() {
     <p>Employee List</p>
     </div>
     <div className="links">
+
     <p>Hukum Gupta</p>
     <p>Logout</p>
     </div>
