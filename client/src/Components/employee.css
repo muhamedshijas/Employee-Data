@@ -1,41 +1,80 @@
-.table-container{
-    height: 100vh;
-    display: flex ;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.table-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.table{
-    padding: 10px;
-    width: 80%;
-    background-color: #F1EFEF;
-    font-size: 17px;
-    border-radius: 9px;
+.table {
+  padding: 10px;
+  width: 80%;
+  background-color: #f1efef;
+  font-size: 17px;
+  border-radius: 9px;
 }
-.table table{
-    width: 100%;
+.table table {
+  width: 100%;
 }
-.table tr  .icons{
-    display: flex;
-    gap: 20px;
-    font-size: 19px;
-   
+.table tr .icons {
+  display: flex;
+  gap: 20px;
+  font-size: 19px;
 }
-.table tr .icons .delete{
-    color: red;
-    cursor: pointer;
+.table tr .icons .delete {
+  color: red;
+  cursor: pointer;
 }
-.table tr .icons .edit{
-    color: blue;
-    cursor: pointer;
+.table tr .icons .edit {
+  color: blue;
+  cursor: pointer;
 }
-.table .btn{
-    width: 100%;
+.table .btn {
+  width: 100%;
 }
-.table .btn button{
-    height: 50px;
-    width: 300px;
-    font-size: 16px;
-    background-color: #191717;
+.table .btn button {
+  height: 50px;
+  width: 300px;
+  font-size: 16px;
+  background-color: #191717;
+}
+.table-container .menubar {
+  width: 80%;
+  height: 80px;
+  background-color: #f1efef;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+}
+.table-container .menubar .form-outline {
+  height: 50px;
+  font-size: 19px;
+  width: 360px !important;
+}
+.table-container .menubar .search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.table-container .menubar .search button {
+  background-color: #191717;
+  color: #f1efef;
+  height: 50px;
+  font-size: 14px;
+  width: 120px;
+}
+.table-container .menubar .counts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  height: 100%;
+  font-weight: 700;
+}
+.table-container .menubar .counts p {
+  margin-top: 20px;
 }

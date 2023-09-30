@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { MDBBtn, MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle, MDBInput } from 'mdb-react-ui-kit'
 import { MDBFile } from 'mdb-react-ui-kit';
-import { BeatLoader } from 'react-spinners';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
+import { BeatLoader } from 'react-spinners';
 import './AddEmployee.css'
-function AddEmployee({setShowAddModal,showAddModal}) {
+function EditEmployee({ showEditModal, setShowEditModal, selectedEmployee }) {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState(0)
@@ -15,13 +15,24 @@ function AddEmployee({setShowAddModal,showAddModal}) {
     const [errMessage, setErrMessage] = useState("")
     const [image, setImage] = useState(null);
     const [finalImage, setFinalImage] = useState(null)
-    const dispatch= useDispatch()
-    const [refresh,setRefresh]=useState(false)
+    const dispatch = useDispatch()
+    const [refresh, setRefresh] = useState(false)
+
     const [isLoading, setIsLoading] = useState(false);
     const handleDesignationChange = (event) => {
         setDesignation(event.target.value);
     };
-
+    const _id=selectedEmployee._id
+    useEffect(() => {
+        if (selectedEmployee) {
+            setName(selectedEmployee.name);
+            setEmail(selectedEmployee.email);
+            setPhone(selectedEmployee.phone);
+            setDesignation(selectedEmployee.designation);
+            setGender(selectedEmployee.gender);
+            setQualifications(selectedEmployee.qualifications);
+        }
+    }, [selectedEmployee]);
 
     const handleGenderChange = (event) => {
         setGender(event.target.value);
@@ -61,24 +72,23 @@ function AddEmployee({setShowAddModal,showAddModal}) {
     }
     async function handleSubmit(e) {
         e.preventDefault();
-        
+        setIsLoading(true)
         if (designation == "Choose One") {
             setErrMessage("choose Qualification")
         }
         else {
             try {
-                setIsLoading(true);
                 const formData = {
-                    name, email, phone, designation, gender, qualifications, profile:finalImage
+                   _id, name, email, phone, designation, gender, qualifications, profile:finalImage
                 }
 
-                const response = await axios.post('/admin/addEmployee', formData, {
+                const response = await axios.put('/admin/editEmployee', formData, {
                 });
                 console.log(response);
                if(!response.data.err){
-                setShowAddModal(false)
+                setShowEditModal(false)
+                alert("employee Edited successfully ")
                 setIsLoading(false)
-                alert("employee added successfully ")
                 setRefresh(!refresh)
                } else{
                 setErrMessage(response.data.message)
@@ -89,12 +99,11 @@ function AddEmployee({setShowAddModal,showAddModal}) {
             }
         }
     }
-
     return (
         <div>
             <div className="add-employee">
                 <form action="">
-                    <h4 className='text-center'>Add Employee</h4>
+                    <h4 className='text-center'>Edit Employee</h4>
 
                     <MDBInput label='Name' id='typeEmail' type='text' value={name} onChange={(e) => setName(e.target.value)} />
                     <MDBInput label='Email' id='typeEmail' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -175,7 +184,6 @@ function AddEmployee({setShowAddModal,showAddModal}) {
                     ) : (
                         <MDBBtn onClick={handleSubmit}>Add</MDBBtn> // Display the "Edit" button
                     )}
-
                 </form>
 
             </div>
@@ -183,4 +191,4 @@ function AddEmployee({setShowAddModal,showAddModal}) {
     )
 }
 
-export default AddEmployee
+export default EditEmployee

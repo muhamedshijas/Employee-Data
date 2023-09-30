@@ -64,3 +64,52 @@ export const addEmployee = async (req, res) => {
         console.log(err)
     }
 }
+export const getEmployeeData=async(req,res)=>{
+    try{
+        const name=req.query.name?? ""
+      const employees=  await employeeModel.find({name:new RegExp(name, 'i')}).lean()
+      const employeesCount=  await employeeModel.find({name:new RegExp(name, 'i')}).countDocuments()
+      res.json({employees,employeesCount})
+    }catch(err){
+        console.log(err);
+    }
+}
+export async function getDeleteEmployee(req,res){
+  try{
+    console.log("hiiii")
+    const id=req.params.id
+
+    await employeeModel.findByIdAndDelete(id)
+    res.json({err:false})
+  }catch(err){
+    cinsole.log(err)
+  }
+}
+export const editEmployee = async (req, res) => {
+    try {
+        const profile = await cloudinary.uploader.upload(req.body.profile, {
+            folder: 'Employee'
+        });
+
+        const _id = req.body._id;
+        const { name, email, phone, designation, gender, qualifications } = req.body; // Extract the updated fields from the request body
+
+        const updatedEmployee = {
+            name,
+            email,
+            phone,
+            designation,
+            gender,
+            qualifications,
+            profile: profile, 
+        };
+
+        // Use findByIdAndUpdate to update the employee data
+        await employeeModel.findByIdAndUpdate(_id, updatedEmployee);
+
+        res.json({ err: false });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ err: true, message: 'Internal server error' });
+    }
+};
