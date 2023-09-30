@@ -1,11 +1,12 @@
 import bcrypt from "bcryptjs"
 import jwt from 'jsonwebtoken'
-
+import cloudinary from "../config/cloudinary.js";
+import employeeModel from "../Models/employeeModel.js";
 
 export const checkAdminLoggedIn = async (req, res) => {
     try {
         const token = req.cookies.adminToken;
-        
+
         if (!token)
             return res.json({ loggedIn: false, error: true, message: "no token" });
 
@@ -36,11 +37,30 @@ export const adminLogin = async (req, res) => {
         }).json({ error: false })
     }
 }
-export const adminLogout =async(req,res)=>{
+export const adminLogout = async (req, res) => {
     res.cookie("adminToken", "", {
-    httpOnly: true,
-    expires: new Date(0),
-    secure: true,
-    sameSite: "none",
-  }).json({ message: "logged out", error: false });
+        httpOnly: true,
+        expires: new Date(0),
+        secure: true,
+        sameSite: "none",
+    }).json({ message: "logged out", error: false });
+}
+export const addEmployee = async (req, res) => {
+    try {
+        const profile = await cloudinary.uploader.upload(req.body.profile, {
+            folder: 'Employee'
+        })
+        const existUser = await employeeModel.findOne({ email: req.body.email }).lean()
+        if (!existUser) {
+            const employee = await employeeModel.create({ ...req.body, profile })
+        } else {
+            console.log(existUser)
+            res.json({ err: true, message: "User already Exist" })
+
+        }
+
+        res.json({ err: false })
+    } catch (err) {
+        console.log(err)
+    }
 }

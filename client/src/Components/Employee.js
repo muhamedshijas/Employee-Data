@@ -63,7 +63,7 @@ function Employee() {
     </div>
     </div>
     {
-        showAddModal && <AddEmployee/>
+        showAddModal && <AddEmployee showAddModal={showAddModal} setShowAddModal={setShowAddModal}/>
     }
     </div>
   )
